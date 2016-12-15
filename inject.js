@@ -8,7 +8,7 @@ chrome.extension.sendMessage({}, function(response) {
       extensionIdScript.textContent = "const chromeExtensionId = " + JSON.stringify(chrome.runtime.id);
       (document.head||document.documentElement).appendChild(extensionIdScript);
       var injectedScript = document.createElement('script');
-      injectedScript.src = chrome.extension.getURL('src/inject/injected.js');
+      injectedScript.src = chrome.extension.getURL('injected.js');
       injectedScript.onload = function() {
         this.remove();
       };
