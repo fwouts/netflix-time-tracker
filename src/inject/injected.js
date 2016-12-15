@@ -3,12 +3,10 @@
 // It sends a message every second to the background script to let it know
 // whether we are currently playing or not.
 
-const EXTENSION_ID = 'jpdlofckjdpfeiojpgmcjobhlkbeginh';
-
 setInterval(function() {
   var playPauseButton = document.querySelector('.player-play-pause');
   if (playPauseButton) {
     var playing = playPauseButton.classList.contains('pause');
-    chrome.runtime.sendMessage(EXTENSION_ID, {playing: playing}, null);
+    chrome.runtime.sendMessage(chromeExtensionId, {playing: playing}, null);
   }
 }, 1000);
