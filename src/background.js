@@ -7,13 +7,13 @@ var todayKey = today.toString();
 console.log(todayKey);
 var timeElapsedSeconds;
 chrome.storage.sync.get('seconds_per_date', function(value) {
-	var secondsPerDate = value['seconds_per_date'] || {};
+  var secondsPerDate = value['seconds_per_date'] || {};
   timeElapsedSeconds = secondsPerDate[todayKey] || 0;
   console.log("Initial spent time for today: " + timeElapsedSeconds);
-	chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
-		if (request.playing !== null) {
-			if (request.playing) {
-				timeElapsedSeconds++;
+  chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
+    if (request.playing !== null) {
+      if (request.playing) {
+        timeElapsedSeconds++;
         secondsPerDate[todayKey] = timeElapsedSeconds;
         var minutes = parseInt(timeElapsedSeconds / 60);
         chrome.browserAction.setBadgeText({
@@ -22,9 +22,9 @@ chrome.storage.sync.get('seconds_per_date', function(value) {
         chrome.browserAction.setBadgeBackgroundColor({
           color: '#E33'
         });
-				chrome.storage.sync.set({'seconds_per_date': secondsPerDate}, null);
-				console.log("Spent time: " + timeElapsedSeconds);
-			}
-		}
-	});
+        chrome.storage.sync.set({'seconds_per_date': secondsPerDate}, null);
+        console.log("Spent time: " + timeElapsedSeconds);
+      }
+    }
+  });
 });
