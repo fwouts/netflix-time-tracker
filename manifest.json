@@ -1,6 +1,6 @@
 {
   "name": "Time tracker for Netflix",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "manifest_version": 2,
   "description": "This extension counts exactly how much time you spend watching Netflix, even on a second screen.",
   "browser_action": {},
