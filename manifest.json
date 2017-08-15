@@ -4,31 +4,18 @@
   "manifest_version": 2,
   "description": "This extension counts exactly how much time you spend watching Netflix, even on a second screen.",
   "browser_action": {},
-  "permissions": [
-    "storage",
-    "https://www.netflix.com/*"
-  ],
+  "permissions": ["storage", "tabs", "https://www.netflix.com/*"],
   "background": {
-    "scripts": [
-      "background.js"
-    ]
+    "scripts": ["background.js"]
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://www.netflix.com/*"
-      ],
-      "js": [
-        "inject.js"
-      ]
+      "matches": ["https://www.netflix.com/*"],
+      "js": ["inject.js"]
     }
   ],
-  "web_accessible_resources": [
-    "injected.js"
-  ],
+  "web_accessible_resources": ["injected.js"],
   "externally_connectable": {
-    "matches": [
-      "https://www.netflix.com/*"
-    ]
+    "matches": ["https://www.netflix.com/*"]
   }
 }
