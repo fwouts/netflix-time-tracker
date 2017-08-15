@@ -14,7 +14,7 @@ setInterval(refreshTodayKey, 60 * 1000);
 refreshTodayKey();
 
 chrome.runtime.onMessageExternal.addListener(onMessageReceived);
-chrome.storage.sync.get("seconds_per_date", function(value) {
+chrome.storage.local.get("seconds_per_date", function(value) {
   secondsPerDate = value["seconds_per_date"] || {};
   var timeElapsedSeconds = secondsPerDate[todayKey] || 0;
   console.log("Initial spent time for today: " + timeElapsedSeconds);
@@ -31,7 +31,7 @@ function onMessageReceived(request, sender, sendResponse) {
       chrome.browserAction.setBadgeBackgroundColor({
         color: "#E33"
       });
-      chrome.storage.sync.set({ seconds_per_date: secondsPerDate }, null);
+      chrome.storage.local.set({ seconds_per_date: secondsPerDate }, null);
       console.log("Spent time: " + secondsPerDate[todayKey]);
     }
   }
