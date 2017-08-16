@@ -49,7 +49,7 @@ function onMessageReceived(request, sender, sendResponse) {
       var watchRatio = minutes / MAX_MINUTES_OF_NETFLIX_PER_DAY;
       console.log("Time ratio: " + timeRatio);
       console.log("Watch ratio: " + watchRatio);
-      if (watchRatio > timeRatio || watchRatio > 1) {
+      if (watchRatio > timeRatio || timeRatio > 1) {
         chrome.tabs.remove(sender.tab.id);
       } else {
         chrome.browserAction.setBadgeText({
