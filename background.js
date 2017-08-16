@@ -35,12 +35,6 @@ function onMessageReceived(request, sender, sendResponse) {
     if (request.playing) {
       secondsPerDate[todayKey] = (secondsPerDate[todayKey] || 0) + 1;
       var minutes = parseInt(secondsPerDate[todayKey] / 60);
-      chrome.browserAction.setBadgeText({
-        text: "" + minutes
-      });
-      chrome.browserAction.setBadgeBackgroundColor({
-        color: "#E33"
-      });
       chrome.storage.local.set({ seconds_per_date: secondsPerDate }, null);
       console.log("Spent time: " + secondsPerDate[todayKey]);
 
@@ -57,6 +51,13 @@ function onMessageReceived(request, sender, sendResponse) {
       console.log("Watch ratio: " + watchRatio);
       if (watchRatio > timeRatio || watchRatio > 1) {
         chrome.tabs.remove(sender.tab.id);
+      } else {
+        chrome.browserAction.setBadgeText({
+          text: `${Math.round(watchRatio / timeRatio * 100)}%`
+        });
+        chrome.browserAction.setBadgeBackgroundColor({
+          color: "#E33"
+        });
       }
     }
   }
