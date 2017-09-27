@@ -4,11 +4,14 @@
 // whether we are currently playing or not.
 
 setInterval(function() {
-  var playPauseButton = document.querySelector(".player-play-pause");
-  if (playPauseButton) {
-    var playing = playPauseButton.classList.contains("pause");
+  var pauseButton = document.querySelector(".button-nfplayerPause");
+  if (pauseButton) {
     chrome.runtime.sendMessage(chromeExtensionId, {
-      playing: playing
+      playing: true
+    });
+  } else {
+    chrome.runtime.sendMessage(chromeExtensionId, {
+      playing: false
     });
   }
 }, 1000);
